@@ -2,7 +2,7 @@ class Solution {
 public:
     int function(vector<int>& nums, int k) {
         int n = nums.size();
-        map<int,int> hashmap;
+        unordered_map<int,int> hashmap;
         int i=0;
         int j=0;
         int cnt=0;
