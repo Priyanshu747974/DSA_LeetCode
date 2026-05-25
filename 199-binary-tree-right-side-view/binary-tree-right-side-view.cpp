@@ -11,16 +11,15 @@
  */
 class Solution {
 public:
-    vector<int> function(TreeNode* root, int  level,vector<int> & ans){
+    void function(TreeNode* root, int  level,vector<int> & ans){
         if(root==NULL){
-            return ans;
+            return;
         }
         if(level==ans.size()){
             ans.push_back(root->val);
         }
         function(root->right,level+1,ans);
         function(root->left,level+1,ans);
-        return ans;
     }
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ds;
