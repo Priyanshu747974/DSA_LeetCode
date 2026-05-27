@@ -9,25 +9,25 @@
  */
 class Solution {
 public:
-    TreeNode* function(TreeNode* root,TreeNode* p, TreeNode* q){
-        if(root== NULL){
-            return NULL;
-        }
-        if(root==p || root==q){
+    TreeNode* LCA(TreeNode* root,TreeNode* p,TreeNode* q){
+        if(root==NULL || root==p || root==q){
             return root;
         }
-        TreeNode*left=function(root->left,p,q);
-        TreeNode*right=function(root->right,p,q);
-            if(left != NULL && right != NULL) {
-                return root;
-            }
-
-            if(left != NULL) {
-                return left;
-            }
-        return right;
+        TreeNode* left=LCA(root->left,p,q);
+        TreeNode* right=LCA(root->right,p,q);
+        if(left==NULL){
+            return right;
+        }
+        if(right==NULL){
+            return left;
+        }
+        else{
+            return root;
+        }
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-            return function(root,p,q); 
+        TreeNode* ans;
+        ans=LCA(root,p,q);
+        return ans;
     }
 };
