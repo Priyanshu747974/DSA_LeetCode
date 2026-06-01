@@ -11,18 +11,20 @@
  */
 class Solution {
 public:
-    vector<int> traverse(TreeNode* root,vector<int> & v){
+    int traverse(TreeNode* root,int & ans,int & cnt,int k){
         if(root==NULL){
-            return v;
+            return 0;
         }
-        traverse(root->left,v);
-        v.push_back(root->val);
-        traverse(root->right,v);
-        return v;
+         traverse(root->left,ans,cnt,k);
+         cnt++;
+         if(cnt==k)ans=root->val;
+         traverse(root->right,ans,cnt,k);
+        return ans;
     }
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> v;
-        v=traverse(root,v);
-        return v[k-1];
+        int cnt=0;
+        int ans=0;
+        ans= traverse(root,ans,cnt,k);
+        return ans;
     }
 };
