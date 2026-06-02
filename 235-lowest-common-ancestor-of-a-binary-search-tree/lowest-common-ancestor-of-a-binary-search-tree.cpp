@@ -12,20 +12,19 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(root==NULL){
-            return root;
+            return NULL;
         }
-        if(root==p || root==q){
-            return root;
+        while(root){
+            if(p->val<root->val &&  q->val<root->val){
+                root=root->left;
+            }
+            else if(p->val>root->val &&  q->val>root->val){
+                root=root->right;
+            }
+            else{
+                return root;
+            }
         }
-        
-        TreeNode* left = lowestCommonAncestor(root->left,p,q);
-        TreeNode* right = lowestCommonAncestor(root->right,p,q);
-        if(left!=NULL && right!=NULL){
-            return root;
-        }
-        if(left!=NULL){
-            return left;
-        }
-        return right;
+        return NULL;
     }
 };
