@@ -11,33 +11,30 @@
  */
 class Solution {
 public:
-    TreeNode* function(vector<int>& preorder, int prestart, int preend,
-                       vector<int>& inorder, int instart, int inend, map<int,int>& mpp){
-        if(prestart>preend|| instart>inend){
-            return NULL;
-        }
-        TreeNode* root = new TreeNode(preorder[prestart]);
-        int inroot=mpp[root->val];
-        int leftover= inroot-instart;
-        root->left=function(preorder,prestart+1,prestart+leftover,
-                            inorder,instart,inroot-1,mpp);
-        root->right=function(preorder,prestart+leftover+1,preend,
-                            inorder,inroot+1,inend,mpp);
-        return root;
-    }
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        map<int,int>mpp;
-        for(int i=0;i<inorder.size();i++){
-            mpp[inorder[i]]=i;
-        }
-        TreeNode* root= function(preorder, 0, preorder.size()-1,
-                                inorder, 0, inorder.size()-1, mpp);
-        return root;
-    }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        vector<int> newpreorder;
-        newpreorder=preorder;
-        sort(preorder.begin(),preorder.end());
-        return buildTree(newpreorder,preorder);
+        TreeNode* root = new TreeNode(preorder[0]);
+        
+        for(int i=1;i<preorder.size();i++){
+            TreeNode* curr = root;
+            int x = preorder[i];
+            while(true){
+                if(x<curr->val){
+                    if(curr->left!=NULL)curr=curr->left;
+                    else{
+                        curr->left=new TreeNode(x);
+                        break;
+                    }   
+                    
+                }
+                else{
+                    if(curr->right!=NULL)curr=curr->right;
+                    else{
+                        curr->right=new TreeNode(x);
+                        break;
+                    }
+                }
+            }
+        }
+        return root;
     }
 };
