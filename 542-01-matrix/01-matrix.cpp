@@ -27,7 +27,7 @@ public:
             for(int i=0;i<4;i++){
                 int nr=r+dr[i];
                 int nc=c+dc[i];
-                if(nr>=0 && nr<n && nc>=0 && nc<m && !vis[nr][nc]){
+                if(nr>=0 && nr<n && nc>=0 && nc<m && vis[nr][nc]!=1){
                     q.push({{nr,nc},steps+1});
                     vis[nr][nc]=1;
                     dis[nr][nc]=steps+1;
