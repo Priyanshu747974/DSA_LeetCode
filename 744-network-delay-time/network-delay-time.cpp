@@ -25,6 +25,8 @@ public:
             int time= it.first;
             int node= it.second;
 
+            if(time > dist[node]) continue;
+
             for(auto it: adj[node]){
                 int nnode=it.first;
                 int ntime=it.second;
