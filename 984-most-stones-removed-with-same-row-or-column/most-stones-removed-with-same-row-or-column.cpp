@@ -41,9 +41,9 @@ public:
         DisjointSet ds(n);
         for(int i=0;i<n;i++){
             for(int j=i+1;j<n;j++){
-                int ui = ds.findULT(i);
-                int uj = ds.findULT(j);
                 if(stones[i][0]==stones[j][0] || stones[i][1] == stones[j][1]){
+                    int ui = ds.findULT(i);
+                    int uj = ds.findULT(j);
                     if(ui==uj){
                         continue;
                     }
