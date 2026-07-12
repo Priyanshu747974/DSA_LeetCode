@@ -19,9 +19,23 @@ public:
         int m = triangle.size();
         int n = triangle[m-1].size();
         vector<vector<int>> dp(m,vector<int>(n,-1));
-        int ans = 1e9;
-        for(int i = 0;i<n;i++){
-            ans = min(ans,function(m-1,i,triangle,dp));
+        dp[0][0]=triangle[0][0];
+        for(int i=1 ;i<m;i++){
+            for(int j=0;j<=i;j++){
+                int down = 1e9;
+                if (j < i){
+                    down = dp[i-1][j];
+                }
+                int dright = 1e9;
+                if (j > 0){
+                    dright = dp[i-1][j-1];
+                }
+                dp[i][j]= triangle[i][j] + min(down,dright);
+            }
+        }
+        int ans=1e9;
+        for(int i=0;i<triangle[m-1].size();i++){
+            ans=min(ans,dp[m-1][i]);
         }
         return ans;
     }
