@@ -19,6 +19,26 @@ public:
     }
     int minInsertions(string s) {
         vector<vector<int>>dp(s.size(),vector<int>(s.size(),-1));
-        return function(0,s.size()-1,s,dp);
+        for(int i=0;i<s.size();i++){
+            dp[i][i]=0;
+        }
+        for(int i=0;i<s.size();i++){
+            for(int j=0;j<s.size();j++){
+                if(i>j){
+                    dp[i][j]=0;
+                }
+            }
+        }
+        for(int left=s.size()-1;left>=0;left--){
+            for(int right=left+1;right<s.size();right++){
+                if(s[left]==s[right]){
+                    dp[left][right]= dp[left+1][right-1];
+                }
+                else{
+                    dp[left][right] = 1+min(dp[left+1][right],dp[left][right-1]);
+                }
+            }
+        }
+        return dp[0][s.size()-1];
     }
 };
