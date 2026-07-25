@@ -1,5 +1,6 @@
 class Solution {
 public:
+    /*
     int function(int ind, int tran, vector<int>& prices, int k,
                  vector<vector<int>>& dp) {
         if (ind >= prices.size() || tran == 2 * k) {
@@ -19,6 +20,7 @@ public:
                        function(ind + 1, tran, prices, k, dp));
         }
     }
+    */
     int maxProfit(int k, vector<int>& prices) {
         vector<vector<int>> dp(prices.size()+1, vector<int>(2 * k+1, -1));
         int n = prices.size();
