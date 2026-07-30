@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
-        int LIS = 1;
         int lastIndex = 0;
         sort(nums.begin(), nums.end());
         vector<int> dp(nums.size(), 1);
@@ -16,14 +15,13 @@ public:
                     hash[ind] = prev;
                 }
             }
-            if (dp[ind] > LIS) {
-                LIS = dp[ind];
+            if (dp[ind] > dp[lastIndex]) {
                 lastIndex = ind;
             }
         }
         vector<int> ans;
         ans.push_back(nums[lastIndex]);
-        while(hash[lastIndex]!=lastIndex){
+        while (hash[lastIndex] != lastIndex) {
             lastIndex = hash[lastIndex];
             ans.push_back(nums[lastIndex]);
         }
