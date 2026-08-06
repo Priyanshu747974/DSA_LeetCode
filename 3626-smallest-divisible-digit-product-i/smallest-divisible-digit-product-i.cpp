@@ -13,7 +13,7 @@ public:
       int prod = 1;
       int ans;
 
-      for(int i=n;i<10*n;i++){
+      for(int i=n;i<n+10;i++){
         if(product(i)%t==0){
             ans = i;
             break;
