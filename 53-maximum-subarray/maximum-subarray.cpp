@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int function(vector<int>& nums){
+    
+    int maxSubArray(vector<int>& nums) {
         int sum = 0;
         int maxi = INT_MIN;
         for(int i =0;i<nums.size();i++){
@@ -11,8 +12,5 @@ public:
             }
         }
         return maxi;
-    }
-    int maxSubArray(vector<int>& nums) {
-        return function(nums);
     }
 };
