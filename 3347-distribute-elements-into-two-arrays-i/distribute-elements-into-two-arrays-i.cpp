@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> resultArray(vector<int>& nums) {
-        vector<int> results(nums.size());
         vector<int> arr1;
         vector<int> arr2;
 
@@ -9,19 +8,14 @@ public:
         arr2.push_back(nums[1]);
 
         for(int i = 2;i<nums.size();i++){
-            if(arr1[arr1.size()-1]>arr2[arr2.size()-1]){
+            if(arr1.back()>arr2.back()){
                 arr1.push_back(nums[i]);
             }
             else{
                 arr2.push_back(nums[i]);
             }
         }
-        for(int i = 0;i<arr1.size();i++){
-            results[i]=arr1[i];
-        }
-        for(int i = 0;i<arr2.size();i++){
-            results[arr1.size()+i]=arr2[i];
-        }
-        return results;
+        arr1.insert(arr1.end(),arr2.begin(),arr2.end());
+        return arr1;
     }
 };
