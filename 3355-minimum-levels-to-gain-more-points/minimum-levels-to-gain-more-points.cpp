@@ -16,7 +16,6 @@ public:
             bob = total - alice;
             if(alice>bob){
               return i+1;  
-              break;
             }
             i++;
         }
