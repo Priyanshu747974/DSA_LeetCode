@@ -11,6 +11,10 @@
  */
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+    }
     TreeNode* removeLeafNodes(TreeNode* root, int target) {
         if(!root){
             return NULL;
