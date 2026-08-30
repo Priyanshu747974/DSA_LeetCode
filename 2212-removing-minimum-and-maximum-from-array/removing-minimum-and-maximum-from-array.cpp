@@ -1,5 +1,9 @@
 class Solution {
 public:
+Solution() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+    }
     int minimumDeletions(vector<int>& nums) {
         int maxi = INT_MIN;
         int mini = INT_MAX;
