@@ -5,8 +5,8 @@ class Solution {
 public:
     int splitNum(int num) {
        
-        std::string s = std::to_string(num);
-        std::sort(s.begin(), s.end());
+        string s = std::to_string(num);
+        sort(s.begin(), s.end());
         
         int num1 = 0;
         int num2 = 0;
