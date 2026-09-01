@@ -36,10 +36,8 @@ public:
                 Node* node = q.front();
                 q.pop();
 
-                for (int i = 0; i < node->children.size(); i++) {
-                    if (node->children[i] != NULL) {
-                        q.push(node->children[i]);
-                    }
+                for (int i = 0; i < node->children.size(); i++) {    
+                    q.push(node->children[i]);
                 }
                 curr.push_back(node->val);
             }
