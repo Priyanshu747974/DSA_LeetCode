@@ -1,31 +1,26 @@
 class Solution {
 public:
-    int maxi(vector<int>& nums, int i){
-        int maxi = INT_MIN;
-        for(int j=0;j<=i;j++){
-            maxi = max(maxi,nums[j]);
-        }
-        return maxi;
-    }
-    int mini(vector<int>& nums, int i){
-        int mini = INT_MAX;
-        for(int j=i;j<nums.size();j++){
-            mini = min(mini,nums[j]);
-        }
-        return mini;
-    }
     int firstStableIndex(vector<int>& nums, int k) {
-        vector<int> instability;
-        int ans = -1;
-        for(int i =0;i<nums.size();i++){
-            instability.push_back(maxi(nums,i)-mini(nums,i));
+        int n = nums.size();
+        if (n == 0) return -1;
+
+        vector<int> suff_min(n);
+        suff_min[n - 1] = nums[n - 1];
+        for (int i = n - 2; i >= 0; --i) {
+            suff_min[i] = min(nums[i], suff_min[i + 1]);
         }
-        for(int i=0;i<instability.size();i++){
-            if(instability[i]<=k){
-                ans = i;
-                break;
+
+        int pref_max = INT_MIN;
+        
+        for (int i = 0; i < n; ++i) {
+            pref_max = max(pref_max, nums[i]);
+            int instability = pref_max - suff_min[i];
+            
+            if (instability <= k) {
+                return i;
             }
         }
-        return ans;
+
+        return -1;
     }
 };
