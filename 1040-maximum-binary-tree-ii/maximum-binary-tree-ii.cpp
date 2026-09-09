@@ -19,7 +19,7 @@ public:
         a.push_back(root->val);
         inorder(root->right,a);
     }
-    TreeNode* construct(vector<int> nodes,int start, int end){
+    TreeNode* construct(vector<int>& nodes,int start, int end){
         if(start>end){
             return NULL;
         }
