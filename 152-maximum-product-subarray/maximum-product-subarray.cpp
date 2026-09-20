@@ -1,25 +1,23 @@
 class Solution {
 public:
-    int solve(int i, vector<int>& nums, long long curr,
-              vector<unordered_map<int, int>>& dp) {
-
-        if (i == nums.size()) {
-            return curr;
-        }
-
-        if (dp[i].count(curr)) {
-            return dp[i][curr];
-        }
-
-        long long product = solve(i + 1, nums, curr * nums[i], dp);
-        long long leave = solve(i + 1, nums, nums[i], dp);
-
-        return dp[i][curr] = max(curr, max(product, leave));
-    }
-
     int maxProduct(vector<int>& nums) {
-        vector<unordered_map<int, int>> dp(nums.size());
+        int maxi = nums[0];
+        int mini = nums[0];
+        int ans = nums[0];
 
-        return solve(1, nums, nums[0], dp);
+        for (int i = 1; i < nums.size(); i++) {
+            int x = nums[i];
+
+            int a = x;
+            int b = maxi * x;
+            int c = mini * x;
+
+            maxi = max(a, max(b, c));
+            mini = min(a, min(b, c));
+
+            ans = max(ans, maxi);
+        }
+
+        return ans;
     }
 };
