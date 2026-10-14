@@ -2,22 +2,22 @@ class Solution {
 public:
     string maxSumOfSquares(int num, int sum) {
         if (sum > 9 * num) return "";
-        vector<int> v(num,0);
-        int have = sum;
-        int i =0;
-        while(have>=9){
-            v[i]=9;
-            have = have - 9;
-            i++;
-            
+
+        string s = "";
+        
+        while (sum >= 9) {
+            s += '9';
+            sum -= 9;
         }
-        if (i < num) {
-            v[i] = have;
+
+        if (sum > 0) {
+            s += char('0' + sum);
         }
-        string s =  "";
-        for(int x:v){
-            s += to_string(x);
+
+        while (s.size() < num) {
+            s += '0';
         }
-        return  s;
+
+        return s;
     }
 };
